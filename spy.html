@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seonmul Flip Cards</title>
+  <style>
+    .flip-card {
+      background-color: transparent;
+      width: 150px;
+      height: 200px;
+      perspective: 1000px; /* Add perspective */
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.5s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .flip-card-front {
+      background-color: #bbb;
+      color: black;
+    }
+
+    .flip-card-back {
+      background-color: #2980b9;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    .flip-card img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h2>Seonmul Flip Cards</h2>
+
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="docs/black.png" alt="Image 1">
+      </div>
+      <div class="flip-card-back">
+        <img backImage.src src="docs/black.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="docs/white.png" alt="Image 2">
+      </div>
+      <div class="flip-card-back">
+        <img backImage.src src="docs/white.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="docs/candy.png" alt="Image 3">
+      </div>
+      <div class="flip-card-back">
+        <img backImage.src src="docs/candy.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="docs/lollipop.png" alt="Image 4">
+      </div>
+      <div class="flip-card-back">
+        <img backImage.src src="docs/lollipop.png">
+      </div>
+    </div>
+  </div>
+
+  <button class="return-btn" onclick="returnToMainPage()">Return to Main Page</button>
+
+  <script>
+    // Function to shuffle an array
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    // Function to flip the card
+    function flipCard(card) {
+      var inner = card.querySelector(".flip-card-inner");
+      var backVisible = inner.style.transform === "rotateY(180deg)";
+
+      // Flip only the clicked card
+      if (backVisible) {
+        // Flip to front
+        inner.style.transform = "rotateY(0deg)";
+      } else {
+        // Flip to back with a random image
+        var backImage = card.querySelector(".flip-card-back img");
+        var randomImages = ["docs/sorry.png", "docs/sorry1.png","docs/sorry2.png","docs/sorry3.png", "docs/food.png", "docs/Premium.png", "docs/tryagain.png"]; // Add your list of random image URLs here
+        var shuffledImages = shuffleArray(randomImages);
+        backImage.src = shuffledImages[0];
+        inner.style.transform = "rotateY(180deg)";
+      }
+    }
+    // Function to return to the main page
+  function returnToMainPage() {
+      window.location.href = "main.html"; // Change index.html to the filename of your main page
+    }
+  </script>
+</body>
+</html>
