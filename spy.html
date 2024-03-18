@@ -116,9 +116,9 @@
   </div>
   </div>
 
-  <div class="button-container">
-    <button class="index.html" onclick="returnToMainPage()">Return to Main Page</button>
-  </div>
+  <FORM>
+    <INPUT TYPE="button" VALUE="ReturnToMainPage" onClick="history.back()">
+    </FORM>
 
   <script>
     // Function to shuffle an array
@@ -147,11 +147,7 @@
         backImage.src = shuffledImages[0];
         inner.style.transform = "rotateY(180deg)";
       }
-    }
-    // Function to return to the main page
-  function returnToMainPage() {
-      window.location.href = "index.html"; // Change index.html to the filename of your main page
-    }
+    } 
   </script>
 </body>
 </html>
