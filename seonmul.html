@@ -145,23 +145,20 @@
     }
 
     // Function to flip the card
-    function flipCard(card) {
-      var inner = card.querySelector(".flip-card-inner");
-      var backVisible = inner.style.transform === "rotateY(180deg)";
+   function flipCard(card) {
+  var inner = card.querySelector(".flip-card-inner");
+  var backVisible = inner.style.transform === "rotateY(180deg)";
+  var backImage = card.querySelector(".flip-card-back img");
 
-      // Flip only the clicked card
-      if (backVisible) {
-        // Flip to front
-        inner.style.transform = "rotateY(0deg)";
-      } else {
-        // Flip to back with a random image
-        var backImage = card.querySelector(".flip-card-back img");
-        var randomImages = ["docs/sorry.png", "docs/sorry1.png", "docs/pa.png", "docs/hm.png", "docs/tryagain.png"]; // Add your list of random image URLs here
-        var shuffledImages = shuffleArray(randomImages);
-        backImage.src = shuffledImages[0];
-        inner.style.transform = "rotateY(180deg)";
-      }
-    }
+  if (backVisible) {
+    inner.style.transform = "rotateY(0deg)"; // พลิกกลับไปด้านหน้า
+  } else {
+    var randomImages = ["docs/sorry.png", "docs/sorry1.png", "docs/pa.png", "docs/hm.png", "docs/tryagain.png"];
+    backImage.src = randomImages[Math.floor(Math.random() * randomImages.length)];
+    inner.style.transform = "rotateY(180deg)";
+  }
+}
+
   </script>
 </body>
 </html>
