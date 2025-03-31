@@ -6,6 +6,12 @@
   <title>Spy Flip Cards</title>
   <style>
     body
+     img {
+            border-radius: 3px; /* ปรับให้มุมโค้งน้อยมาก */
+            margin: 10px;
+            width: 150px;
+            height: auto;
+        }
 
     .cards-container {
       text-align: center; /* Center-align the flip cards */
@@ -14,45 +20,41 @@
       flex-wrap: wrap; /* Enable wrapping */
     }
 
-    .flip-card {
-      background-color: transparent;
-      width: 130px;
-      height: 200px;
-      perspective: 1000px; /* Add perspective */
-      display: inline-block;
-      margin: 10px;
-    }
+   .flip-card {
+  background-color: transparent;
+  width: 150px;
+  height: 200px;
+  perspective: 1000px; /* คงไว้เพื่อให้การ์ดพลิกได้ */
+  margin: 10px;
+}
 
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.5s;
-      transform-style: preserve-3d;
-    }
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  box-shadow: none !important; /* ลบเงาทั้งหมด */
+}
 
-    .flip-card:hover .flip-card-inner {
-      transform: rotateY(180deg);
-    }
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+  box-shadow: none !important; /* ลบเงาเมื่อ hover */
+}
 
-    .flip-card-front, .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-    }
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  box-shadow: none !important; /* ลบเงาทุกด้าน */
+  border-radius: 0px; /* ตั้งเป็น 0 เพื่อให้มุมไม่โค้ง */
+}
 
-    .flip-card-front {
-      background-color: #bbb;
-      color: black;
-    }
-
-    .flip-card-back {
-      background-color: #2980b9;
-      color: white;
-      transform: rotateY(180deg);
-    }
+.flip-card-back {
+  transform: rotateY(180deg);
+}
 
     .flip-card img {
       width: 100%;
@@ -142,9 +144,10 @@
     }
 
     // Function to flip the card
-    function flipCard(card) {
-      var inner = card.querySelector(".flip-card-inner");
-      var backVisible = inner.style.transform === "rotateY(180deg)";
+ function flipCard(card) {
+  var inner = card.querySelector(".flip-card-inner");
+  var backVisible = inner.style.transform === "rotateY(180deg)";
+  var backImage = card.querySelector(".flip-card-back img");
 
       // Flip only the clicked card
       if (backVisible) {
@@ -152,11 +155,9 @@
         inner.style.transform = "rotateY(0deg)";
       } else {
         // Flip to back with a random image
-        var backImage = card.querySelector(".flip-card-back img");
         var randomImages = ["docs/sorry.png", "docs/sorry1.png","docs/sorry2.png","docs/icetea.png", "docs/rose.png", "docs/strawberry.png", "docs/tryagain.png"]; // Add your list of random image URLs here
-        var shuffledImages = shuffleArray(randomImages);
-        backImage.src = shuffledImages[0];
-        inner.style.transform = "rotateY(180deg)";
+        backImage.src = randomImages[Math.floor(Math.random() * randomImages.length)];
+    inner.style.transform = "rotateY(180deg)";
       }
     } 
   </script>
