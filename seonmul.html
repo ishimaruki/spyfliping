@@ -23,7 +23,7 @@
   background-color: transparent;
   width: 150px;
   height: 200px;
-  perspective: 1000px; /* เพิ่มมิติ */
+  perspective: 1000px; /* คงไว้เพื่อให้การ์ดพลิกได้ */
   margin: 10px;
 }
 
@@ -34,12 +34,12 @@
   text-align: center;
   transition: transform 0.5s;
   transform-style: preserve-3d;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เพิ่มเงารอบการ์ด */
+  box-shadow: none !important; /* ลบเงาทั้งหมด */
 }
 
 .flip-card:hover .flip-card-inner {
   transform: rotateY(180deg);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* เพิ่มเงาเมื่อ hover */
+  box-shadow: none !important; /* ลบเงาเมื่อ hover */
 }
 
 .flip-card-front, .flip-card-back {
@@ -47,8 +47,8 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* เงาสำหรับแต่ละด้าน */
-  border-radius: 10px; /* เพิ่มความโค้งมน */
+  box-shadow: none !important; /* ลบเงาทุกด้าน */
+  border-radius: 0px; /* ตั้งเป็น 0 เพื่อให้มุมไม่โค้ง */
 }
 
 .flip-card-back {
@@ -56,7 +56,6 @@
   color: white;
   transform: rotateY(180deg);
 }
-
     .flip-card img {
       width: 100%;
       height: 100%;
